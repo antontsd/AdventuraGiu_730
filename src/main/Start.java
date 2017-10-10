@@ -29,5 +29,5 @@ public final class Start
         ui.hraj();
     }
     
-    private Start(){}4564564564
+    private Start(){}
 }
