@@ -12,6 +12,8 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
@@ -35,16 +37,20 @@ public class Main extends Application {
         IHra hra = new Hra();
         BorderPane borderPane = new BorderPane();
         
-        Text centerText = new Text();
+        TextArea centerText = new TextArea();
         centerText.setText(hra.vratUvitani());
+        centerText.setEditable(false);
         borderPane.setCenter(centerText);
         
-        Label zadejPrikaz = new Label("Zadej prikaz");
-        zadejPrikaz.setFont(Font.font("Arial", FontWeight.BOLD, 16));
+        Label zadejPrikazLabel = new Label("Zadej prikaz");
+        zadejPrikazLabel.setFont(Font.font("Arial", FontWeight.BOLD, 16));
+        
+        TextField zadejPrikazTextField = new TextField("Sem zadej prikaz");
+        
         
         FlowPane dolniPanel = new FlowPane();
         dolniPanel.setAlignment(Pos.CENTER);
-        dolniPanel.getChildren().add(zadejPrikaz);       
+        dolniPanel.getChildren().add(zadejPrikazTextField);       
     
         
         borderPane.setBottom(dolniPanel);
