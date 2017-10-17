@@ -46,7 +46,26 @@ public class Main extends Application {
         zadejPrikazLabel.setFont(Font.font("Arial", FontWeight.BOLD, 16));
         
         TextField zadejPrikazTextField = new TextField("Sem zadej prikaz");
-        
+        zadejPrikazTextField.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+               
+                
+                String zadanyPrikaz = zadejPrikazTextField.getText();
+                String odpoved = hra.zpracujPrikaz(zadanyPrikaz);
+                
+                centerText.appendText("\n\n"+ zadanyPrikaz + "\n\n");
+                centerText.appendText("\n\n"+ odpoved + "\n\n");
+                
+                
+                zadejPrikazTextField.setText("");
+                
+                if (hra.konecHry()) {
+                zadejPrikazTextField.setEditable(false);
+                }
+            }
+        });
         
         FlowPane dolniPanel = new FlowPane();
         dolniPanel.setAlignment(Pos.CENTER);
