@@ -8,9 +8,16 @@ package main;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import logika.Hra;
 import logika.IHra;
@@ -24,22 +31,26 @@ public class Main extends Application {
     
     @Override
     public void start(Stage primaryStage) {
-        Button btn = new Button();
-        btn.setText("Start adventura");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
-            
-            @Override
-            public void handle(ActionEvent event) {
-                IHra hra = new Hra();
-                TextoveRozhrani textoveRozharani = new TextoveRozhrani (hra);
-                textoveRozharani.hraj();
-            }
-        });
         
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
+        IHra hra = new Hra();
+        BorderPane borderPane = new BorderPane();
         
-        Scene scene = new Scene(root, 300, 250);
+        Text centerText = new Text();
+        centerText.setText(hra.vratUvitani());
+        borderPane.setCenter(centerText);
+        
+        Label zadejPrikaz = new Label("Zadej prikaz");
+        zadejPrikaz.setFont(Font.font("Arial", FontWeight.BOLD, 16));
+        
+        FlowPane dolniPanel = new FlowPane();
+        dolniPanel.setAlignment(Pos.CENTER);
+        dolniPanel.getChildren().add(zadejPrikaz);       
+    
+        
+        borderPane.setBottom(dolniPanel);
+
+        
+        Scene scene = new Scene(borderPane, 400, 350);
         
         primaryStage.setTitle("Moje Adventura");
         primaryStage.setScene(scene);
