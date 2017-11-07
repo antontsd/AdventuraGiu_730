@@ -1,7 +1,13 @@
 
 package logika;
+import UI.Mapa;
+import Utils.Obsever;
+import Utils.Subject;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Observer;
 import java.util.Random;
 
 /**
@@ -15,13 +21,15 @@ import java.util.Random;
  *@author     Michael Kolling, Lubos Pavlicek, Jarmila Pavlickova
  *@version    pro školní rok 2014/2015
  */
-public class HerniPlan {
+public class HerniPlan implements Subject {
 
     private Prostor aktualniProstor;
     private Prostor viteznyProstor;
     private Map<String, Prostor> prostoryCollection;
     private Map<String, Prostor> learntProstoryCollection;
    private boolean kufr = false;
+   
+   private final List<Obsever> listObserver = new ArrayList<>();
 
     /**
      *  Konstruktor který vytváří jednotlivé prostory a propojuje je pomocí východů.
@@ -39,27 +47,27 @@ public class HerniPlan {
         // vytvářejí se jednotlivé prostory
         prostoryCollection = new HashMap<String, Prostor>(); 
         learntProstoryCollection = new HashMap<String, Prostor>(); 
-        Prostor czech_republic = new Prostor("Česko","Česko, jste prijeli do srdce evropy a tady začína vač příbeh");
+        Prostor czech_republic = new Prostor("Česko","Česko, jste prijeli do srdce evropy a tady začína vač příbeh", 110, 40);
         prostoryCollection.put("Česko", czech_republic);
-        Prostor germany = new Prostor("Něměcko", "Něměcko");
+        Prostor germany = new Prostor("Něměcko", "Něměcko", 100, 20);
         prostoryCollection.put("Něměcko", germany);
-        Prostor poland = new Prostor("Polsko","Polsko");
+        Prostor poland = new Prostor("Polsko","Polsko", 50, 40);
         prostoryCollection.put("Polsko", poland);
-        Prostor slovakia = new Prostor("Slovensko", "Slovensko");
+        Prostor slovakia = new Prostor("Slovensko", "Slovensko", 110, 60);
         prostoryCollection.put("Slovensko", slovakia);
-        Prostor france = new Prostor("France","France");
+        Prostor france = new Prostor("France","France", 60, 40);
         prostoryCollection.put("France", france);
-        Prostor austria = new Prostor("Rakousko","Rakousko");
+        Prostor austria = new Prostor("Rakousko","Rakousko", 110, 80);
         prostoryCollection.put("Rakousko", austria);
-        Prostor italy = new Prostor("Italia","Italia");
+        Prostor italy = new Prostor("Italia","Italia", 150, 40);
         prostoryCollection.put("Italia", italy);
-        Prostor switzerland = new Prostor("Švýcarsko","Švýcarsko");
+        Prostor switzerland = new Prostor("Švýcarsko","Švýcarsko", 180, 90);
         prostoryCollection.put("Švýcarsko", switzerland);
-        Prostor slovenia = new Prostor("Slovinsko","Slovinsko");
+        Prostor slovenia = new Prostor("Slovinsko","Slovinsko", 90, 1000);
         prostoryCollection.put("Slovinsko", slovenia);
-        Prostor hungary = new Prostor("Maďarsko","Maďarsko");
+        Prostor hungary = new Prostor("Maďarsko","Maďarsko", 45, 10);
         prostoryCollection.put("Maďarsko", hungary);
-        Prostor belgium = new Prostor("Belgie","Belgie");
+        Prostor belgium = new Prostor("Belgie","Belgie", 20, 5);
         prostoryCollection.put("Belgie", belgium);
 
         // přiřazují se průchody mezi prostory (sousedící prostory)
@@ -157,6 +165,7 @@ public class HerniPlan {
      */
     public void setAktualniProstor(Prostor prostor) {
         aktualniProstor = prostor;
+        notifyAllObservers();
     }
 
     /**
@@ -211,4 +220,21 @@ public class HerniPlan {
       public void setKufr(boolean stav) {
         this.kufr = stav;
     }
+
+    public void registerObserver(Mapa aThis) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+}
+
+
+@Override
+public void deleteObserver (Observer observer){
+listObserver.remove(observer);
+}
+
+@Override
+public void notifyAllObservers() {
+        for (Observer listObserverItem : listObserver) {
+        listObserveruItem.update();
+}
 }

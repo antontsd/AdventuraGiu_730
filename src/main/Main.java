@@ -5,6 +5,7 @@
  */
 package main;
 
+import UI.MenuPole;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -33,10 +34,17 @@ import uiText.TextoveRozhrani;
  */
 public class Main extends Application {
     
+    private Mapa mapa;
+    private MenuPole menu;
+    
+    
     @Override
     public void start(Stage primaryStage) {
         
         IHra hra = new Hra();
+        mapa = new Mapa(hra);
+        menu = new MenuPole();
+        
         BorderPane borderPane = new BorderPane();
         
         TextArea centerText = new TextArea();
@@ -74,14 +82,16 @@ public class Main extends Application {
         dolniPanel.getChildren().add(zadejPrikazTextField);       
  
         
-        ImageView obrazek = new ImageView( new Image(Main.class.getResourceAsStream("/zdroje/mapa.jpg"),400,400,false,false));
-        FlowPane obrazekPane = new FlowPane();
-        obrazekPane.setPrefSize(300, 300);
+       
         
         
-        obrazekPane.getChildren().add(obrazek);
-        borderPane.setLeft(obrazekPane);
+        //panel prikaz
+        borderPane.setLeft(mapa);
+        //obrazek s mapou
         borderPane.setBottom(dolniPanel);
+        
+        //menu adventury
+        borderPane.setTop(menu);
        
         Scene scene = new Scene(borderPane, 800, 650);
         

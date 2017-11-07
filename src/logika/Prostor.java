@@ -22,6 +22,10 @@ public class Prostor {
     private int brilliantsCount;
     private int learnTryingsCount = 3;
     public static Hra hra;
+    
+    private double posX;
+    private double posY;
+    
 
     /**
      * Vytvoreni prostoru se zadanym popisem, napr. "kuchyn", "hala", "travnik
@@ -31,9 +35,12 @@ public class Prostor {
      * viceslovny nazev bez mezer.
      * @param popis Popis prostoru.
      */
-    public Prostor(String nazev, String popis) {
+    public Prostor(String nazev, String popis, double posX, double posY) {
         this.nazev = nazev;
         this.popis = popis;
+        this.posX = posX;
+        this.posY = posY;
+              
         vychody = new HashSet<>();
         seznamVeci= new HashMap<>();
         Random random = new Random();
@@ -249,6 +256,20 @@ public class Prostor {
 
     public Vec najdiVecVProstoru(String jmeno) {
         return seznamVeci.get(jmeno);
+    }
+
+    /**
+     * @return the posX
+     */
+    public double getPosX() {
+        return posX;
+    }
+
+    /**
+     * @return the posY
+     */
+    public double getPosY() {
+        return posY;
     }
 
 }
