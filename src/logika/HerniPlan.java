@@ -1,14 +1,14 @@
 
 package logika;
 import UI.Mapa;
-import Utils.Obsever;
-import Utils.Subject;
+
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Observer;
 import java.util.Random;
+import utils.Subject;
 
 /**
  *  Class HerniPlan - třída představující mapu a stav adventury.
@@ -222,25 +222,18 @@ public class HerniPlan implements Subject {
         this.kufr = stav;
     }
 
-    public void registerObserver(Mapa aThis) {
+    public void registerObserver(Observer observer) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-}
 
-
-    @Override
-    public void registerObserver(Observer observer) {
-        listObserveru.add(observer);
-    }
-
-    @Override
     public void deleteObserver(Observer observer) {
-        listObserveru.remove(observer);
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void notifyAllObservers() {
-        for (Observer listObserveruItem : listObserveru) {
-            listObserveruItem.update();
-        }
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
+

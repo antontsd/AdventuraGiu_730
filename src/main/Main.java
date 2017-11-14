@@ -43,7 +43,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         
-        this.PrimaryStage = primaryStage;
+        this.primaryStage = primaryStage;
         hra = new Hra();
         mapa = new Mapa(hra);
         menu = new MenuPole(this);
