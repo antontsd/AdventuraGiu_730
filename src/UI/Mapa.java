@@ -12,47 +12,44 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import logika.IHra;
 import main.Main;
-import utils.Observer;
+import Utils.Observer;
+import Utils.ObserverNovaHra;
+
 /**
  *
- * @author koza02
+ * @author xzenj02
  */
-public class Mapa extends AnchorPane implements Obsever{
-    
-    
-    
+public class Mapa extends AnchorPane implements Observer{
+
+    private IHra hra;
     private Circle tecka;
-    public IHra hra;
     
-  
-
     public Mapa(IHra hra){
-    this.hra = hra;
-    hra.getHerniPlan().registerObserver(this);
-    init();
+        this.hra = hra;
+        hra.getHerniPlan().registerObserver(this);
+        init();
     }
-}
-
-private void init(){
+    
+    private void init(){
         ImageView obrazek = new ImageView(new Image(Main.class.getResourceAsStream("/zdroje/mapa.jpg"),300,300,false,false));
         tecka = new Circle(10, Paint.valueOf("red"));
         this.getChildren().addAll(obrazek, tecka);
         update();
-}
-
+    }
+    
     @Override
     public void update() {
         this.setTopAnchor(tecka, hra.getHerniPlan().getAktualniProstor().getPosY());
         this.setLeftAnchor(tecka, hra.getHerniPlan().getAktualniProstor().getPosX());
     }
 
-
     @Override
     public void novaHra(IHra hra) {
-    hra.getHerniPlan().deleteObserver(this);
-    this.hra = hra;
-    hra.getHerniPlan().registerObserver(this);
-    update();
-
-}    
+        hra.getHerniPlan().deleteObserver(this);
+        this.hra = hra;
+        hra.getHerniPlan().registerObserver(this);
+        update();
+        
+    }
+    
 }

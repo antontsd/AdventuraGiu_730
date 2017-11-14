@@ -5,14 +5,13 @@
  */
 package main;
 
-import UI.MenuPole;
 import UI.Mapa;
+import UI.MenuPole;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -20,7 +19,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -45,7 +43,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         
-        this.setPrimaryStage(primaryStage);
+        this.PrimaryStage = primaryStage;
         hra = new Hra();
         mapa = new Mapa(hra);
         menu = new MenuPole(this);
@@ -61,6 +59,7 @@ public class Main extends Application {
         zadejPrikazLabel.setFont(Font.font("Arial", FontWeight.BOLD, 16));
         
         TextField zadejPrikazTextField = new TextField("Sem zadej prikaz");
+        
         zadejPrikazTextField.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
@@ -84,16 +83,19 @@ public class Main extends Application {
         
         FlowPane dolniPanel = new FlowPane();
         dolniPanel.setAlignment(Pos.CENTER);
-        dolniPanel.getChildren().add(zadejPrikazTextField);       
+        dolniPanel.getChildren().addAll(zadejPrikazLabel, zadejPrikazTextField);   
  
         
        
         
         
-        //panel prikaz
-        borderPane.setLeft(mapa);
+       
         //obrazek s mapou
         borderPane.setBottom(dolniPanel);
+        
+         //panel prikaz
+        borderPane.setLeft(mapa);
+        
         
         //menu adventury
         borderPane.setTop(menu);

@@ -3,11 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package Utils;
+
+import logika.IHra;
 
 /**
  *
- * @author koza02
+ * @author xzenj02
  */
 public interface ObserverNovaHra {
+    
+    void novaHra(IHra hra);
     
 }
