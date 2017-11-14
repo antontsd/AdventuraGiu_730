@@ -25,11 +25,12 @@ public class HerniPlan implements Subject {
 
     private Prostor aktualniProstor;
     private Prostor viteznyProstor;
+    
     private Map<String, Prostor> prostoryCollection;
     private Map<String, Prostor> learntProstoryCollection;
    private boolean kufr = false;
    
-   private final List<Obsever> listObserver = new ArrayList<>();
+ private List<Observer> listObserveru = new ArrayList<Observer>();
 
     /**
      *  Konstruktor který vytváří jednotlivé prostory a propojuje je pomocí východů.
@@ -227,14 +228,19 @@ public class HerniPlan implements Subject {
 }
 
 
-@Override
-public void deleteObserver (Observer observer){
-listObserver.remove(observer);
-}
+    @Override
+    public void registerObserver(Observer observer) {
+        listObserveru.add(observer);
+    }
 
-@Override
-public void notifyAllObservers() {
-        for (Observer listObserverItem : listObserver) {
-        listObserveruItem.update();
-}
+    @Override
+    public void deleteObserver(Observer observer) {
+        listObserveru.remove(observer);
+    }
+
+    @Override
+    public void notifyAllObservers() {
+        for (Observer listObserveruItem : listObserveru) {
+            listObserveruItem.update();
+        }
 }

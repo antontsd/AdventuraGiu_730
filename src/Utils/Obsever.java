@@ -3,13 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Utils;
+package utils;
 
 /**
  *
- * @author koza02
+ * @author xzenj02
  */
-public class Obsever {
+public interface Observer {
     
     void update();
+    
+    void novaHra {IHra hra};
+    
 }
