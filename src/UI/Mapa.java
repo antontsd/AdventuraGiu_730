@@ -12,8 +12,8 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import logika.IHra;
 import main.Main;
-import Utils.Observer;
-import Utils.ObserverNovaHra;
+import utils.Observer;
+import utils.ObserverNovaHra;
 
 /**
  *

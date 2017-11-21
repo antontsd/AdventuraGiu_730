@@ -1,12 +1,11 @@
-
 package logika;
-import UI.Mapa;
+
 
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Observer;
+import utils.Observer;
 import java.util.Random;
 import utils.Subject;
 
@@ -21,7 +20,7 @@ import utils.Subject;
  *@author     Michael Kolling, Lubos Pavlicek, Jarmila Pavlickova
  *@version    pro školní rok 2014/2015
  */
-public class HerniPlan implements Subject {
+public class HerniPlan implements Subject{
 
     private Prostor aktualniProstor;
     private Prostor viteznyProstor;
@@ -222,18 +221,23 @@ public class HerniPlan implements Subject {
         this.kufr = stav;
     }
 
+  
+
     public void registerObserver(Observer observer) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        listObserveru.add(observer);
     }
+
 
     public void deleteObserver(Observer observer) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        listObserveru.remove(observer);
     }
 
-    @Override
+
     public void notifyAllObservers() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        for (Observer listObserveruItem : listObserveru) {
+            listObserveruItem.update();
+}
 
 }
 
+}
